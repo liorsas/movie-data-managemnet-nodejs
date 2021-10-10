@@ -5,19 +5,19 @@
     <link
       href="https://fonts.googleapis.com/css?family=Patrick Hand"
       rel="stylesheet"
-   
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
   </head>
   <body>
-
-    <input 
-    id = "logout-btn"
-    type = "button"
-    value = "Log Out"
-    onclick="getLogOut()"
-    >
+    <input
+      id="logout-btn"
+      type="button"
+      value="Log Out"
+      onclick="getLogOut()"
+    />
     <h1>Users Management Page</h1>
     <br />
 
@@ -28,37 +28,33 @@
       <li name="<%=el.id%>">
         <%=el.username%>
         <button
-         
           onclick="deleteUser('<%=el.id%>')"
           id="del"
           value="delete"
-          name="userID">
+          name="userID"
+        >
           <i class="fa fa-trash">delete</i>
         </button>
-          
-         
 
         <button
-          
           onclick="updateUser('<%=el.id%>')"
           id="upd-btn"
-        class = btn-upd
+          class="btn-upd"
           value="update"
-          name="userID">
+          name="userID"
+        >
           <i class="fa fa-edit">update</i>
         </button>
-        
       </li>
 
       <%} )%>
     </ul>
     <br />
 
-    <a href="/editusers/userdata">Add New
-      <i class="fad fa-file-plus"></i>
-      </a><br />
+    <a href="/editusers/userdata">Add New <i class="fad fa-file-plus"></i> </a
+    ><br />
 
-    <a class = "back-link" href="/menu">Back To Menu Page</a>
+    <a class="back-link" href="/menu">Back To Menu Page</a>
   </body>
 
   <script>
@@ -70,19 +66,23 @@
         id: id,
       };
 
-      fetch("/editusers/del", {
-        method: "POST", // or 'PUT'
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(obj),
-      })
-        .then((res) => res.text())
-        .then((htmlStr) => {
-          document.open();
-          document.write(htmlStr);
-          document.close();
-        });
+      if (id !== 1) {
+        fetch("/editusers/del", {
+          method: "POST", // or 'PUT'
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(obj),
+        })
+          .then((res) => res.text())
+          .then((htmlStr) => {
+            document.open();
+            document.write(htmlStr);
+            document.close();
+          });
+      } else {
+        alert("deletion of the Admin is prohibited!");
+      }
     }
 
     ///////update user func
@@ -108,14 +108,14 @@
         });
     }
 
-    function getLogOut(){
-fetch("/") .then((res) => res.text())
+    function getLogOut() {
+      fetch("/")
+        .then((res) => res.text())
         .then((htmlStr) => {
           document.open();
           document.write(htmlStr);
           document.close();
         });
-
- }
+    }
   </script>
 </html>

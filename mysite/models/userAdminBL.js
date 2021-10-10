@@ -3,15 +3,14 @@ const jsUpdFile = require("../DALs/writeToUserFileDal");
 
 //get users from json users.json
 async function getUsers() {
-  try{
-  let usersData = await jsFileUsers.getDataFromUsesrsJs();
-  users = usersData.users;
-  //console.log(users)
-  return users;
-}
-catch(err){
-  console.log(err)
-}
+  try {
+    let usersData = await jsFileUsers.getDataFromUsesrsJs();
+    users = usersData.users;
+    //console.log(users)
+    return users;
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 //delete user
@@ -19,9 +18,8 @@ catch(err){
 async function delUser(obj) {
   try {
     let usersData = await jsFileUsers.getDataFromUsesrsJs();
-    //console.log(obj);
-
     let users = usersData.users;
+
     let filterUser = users.filter((el) => el.id !== obj.id);
     usersData.users = [...filterUser];
 
@@ -53,46 +51,45 @@ async function getUserByID(userID) {
 }
 //update user to json file
 async function updUserDetails(obj) {
-  try{
-  let upd = false;
-  let usersData = await jsFileUsers.getDataFromUsesrsJs();
-  let usersArr = usersData.users;
-  let objIndex = usersArr.findIndex((el) => el.id == obj.id);
+  try {
+    let upd = false;
+    let usersData = await jsFileUsers.getDataFromUsesrsJs();
+    let usersArr = usersData.users;
+    let objIndex = usersArr.findIndex((el) => el.id == obj.id);
 
-  if (usersArr[objIndex].username !== obj.username) {
-    usersArr[objIndex].username = obj.username;
-    upd = true;
-  }
-  if (usersArr[objIndex].password !== obj.password) {
-    usersArr[objIndex].password = obj.password;
-    upd = true;
-  }
-  if (usersArr[objIndex].age !== obj.age) {
-    usersArr[objIndex].age = obj.age;
-    upd = true;
-  }
-  if (usersArr[objIndex].role !== obj.role) {
-    usersArr[objIndex].role = obj.role;
-    upd = true;
-  }
-  if (usersArr[objIndex].numOfTransactions !== obj.numOfTransactions) {
-    usersArr[objIndex].numOfTransactions = obj.numOfTransactions;
-    upd = true;
-  }
+    if (usersArr[objIndex].role !== "Admin") {
+      if (usersArr[objIndex].username !== obj.username) {
+        usersArr[objIndex].username = obj.username;
+        upd = true;
+      }
+      if (usersArr[objIndex].password !== obj.password) {
+        usersArr[objIndex].password = obj.password;
+        upd = true;
+      }
+      if (usersArr[objIndex].age !== obj.age) {
+        usersArr[objIndex].age = obj.age;
+        upd = true;
+      }
+      if (usersArr[objIndex].role !== obj.role) {
+        usersArr[objIndex].role = obj.role;
+        upd = true;
+      }
+      if (usersArr[objIndex].numOfTransactions !== obj.numOfTransactions) {
+        usersArr[objIndex].numOfTransactions = obj.numOfTransactions;
+        upd = true;
+      }
+    }
 
-
-
-  if (upd) {
-    usersData.users = [...usersArr];
-    //console.log(usersArr);
-    //console.log(usersData.users);
-    let write = await jsUpdFile.updateUserFile(usersData);
-    return write;
-  } else return false;
-}
-catch(err){
-  console.log(err)
-}
+    if (upd) {
+      usersData.users = [...usersArr];
+      //console.log(usersArr);
+      //console.log(usersData.users);
+      let write = await jsUpdFile.updateUserFile(usersData);
+      return write;
+    } else return false;
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 //add user func
@@ -118,7 +115,7 @@ async function addUserToJson(obj) {
       createDate: today,
       role: obj.role,
       age: obj.age,
-      numOfTransactions:obj.tran
+      numOfTransactions: obj.tran,
     };
 
     usersJs.push(userObj);
