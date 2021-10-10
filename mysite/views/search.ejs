@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Patrick Hand"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <input 
+    id = "logout-btn"
+    type = "button"
+    value = "Log Out"
+    onclick="getLogOut()"
+    >
+    <h1>Search Movies Page</h1>
+
+    <form action="/menu/search/results" method="POST">
+      Movie Name: <input type="text" id="mname" name="mname" /><br />
+      Genre:
+      <select name="genre" id="selgen">
+        <% genres.map(el => { %>
+        <option value="<%= el%>"><%= el%></option>
+        <% }) %>
+      </select>
+
+      <br />
+
+      Language:
+      <select name="language" id="selang">
+        <% language.map(el => { %>
+        <option value="<%= el%>"><%= el%></option>
+        <% }) %>
+      </select>
+
+     <br /><br />
+      <input type="submit" class="btn-sub" value="search" />
+    </form>
+    <br />
+
+    <a class = "back-link" href="/menu">Back To Menu Page </a>
+  </body>
+  <script>
+     function getLogOut(){
+fetch("/") .then((res) => res.text())
+        .then((htmlStr) => {
+          document.open();
+          document.write(htmlStr);
+          document.close();
+        });
+
+ }
+  </script>
+</html>

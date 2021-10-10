@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Patrick Hand"
+      rel="stylesheet"
+   
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+  </head>
+  <body>
+
+    <input 
+    id = "logout-btn"
+    type = "button"
+    value = "Log Out"
+    onclick="getLogOut()"
+    >
+    <h1>Users Management Page</h1>
+    <br />
+
+    <h2>Users List:</h2>
+
+    <ul>
+      <% users.map( el => {%>
+      <li name="<%=el.id%>">
+        <%=el.username%>
+        <button
+         
+          onclick="deleteUser('<%=el.id%>')"
+          id="del"
+          value="delete"
+          name="userID">
+          <i class="fa fa-trash">delete</i>
+        </button>
+          
+         
+
+        <button
+          
+          onclick="updateUser('<%=el.id%>')"
+          id="upd-btn"
+        class = btn-upd
+          value="update"
+          name="userID">
+          <i class="fa fa-edit">update</i>
+        </button>
+        
+      </li>
+
+      <%} )%>
+    </ul>
+    <br />
+
+    <a href="/editusers/userdata">Add New
+      <i class="fad fa-file-plus"></i>
+      </a><br />
+
+    <a class = "back-link" href="/menu">Back To Menu Page</a>
+  </body>
+
+  <script>
+    //delete user from json
+    async function deleteUser(userId) {
+      id = parseInt(userId);
+
+      let obj = {
+        id: id,
+      };
+
+      fetch("/editusers/del", {
+        method: "POST", // or 'PUT'
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(obj),
+      })
+        .then((res) => res.text())
+        .then((htmlStr) => {
+          document.open();
+          document.write(htmlStr);
+          document.close();
+        });
+    }
+
+    ///////update user func
+    async function updateUser(userId) {
+      id = parseInt(userId);
+
+      let obj = {
+        id: id,
+      };
+
+      fetch("/editusers/userdata", {
+        method: "POST", // or 'PUT'
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(obj),
+      })
+        .then((res) => res.text())
+        .then((htmlStr) => {
+          document.open();
+          document.write(htmlStr);
+          document.close();
+        });
+    }
+
+    function getLogOut(){
+fetch("/") .then((res) => res.text())
+        .then((htmlStr) => {
+          document.open();
+          document.write(htmlStr);
+          document.close();
+        });
+
+ }
+  </script>
+</html>

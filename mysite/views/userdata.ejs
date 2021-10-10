@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Patrick Hand"
+      rel="stylesheet"
+      
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <h1>User Data Page</h1>
+    <br />
+    <% if(upd){ %> 
+      
+     <!-- <div style="color: black;font: size 16px;" >user id:</div> <div style="color:red;font: size 16px;" >  <%=user.id%></div>
+     -->
+      <div class = "box">
+        <div class = "box-child" >
+    <form class ="upd-user-log-form" >
+      <h1>user update</h1>
+      <label for = "uname">User Id:</label>
+      <input class="upd-input"
+      id="upid"
+      type="number"
+      value="<%=user.id%>"
+      name="userid"
+      readonly><br />
+      <label for = "uname">Username:</label>
+      <input
+      class = "upd-input"
+        id="uname"
+        type="text"
+        value="<%=user.username%>"
+        name="username"
+      />
+      <br />
+
+      <label for = "uppass">Passward:</label>
+       <input class = "upd-input" id="uppass" type="number" value="<%=user.password%>" name="password" /><br />
+       <label for = "upage">Age:</label>
+      <input class = "upd-input" id="upage" type="number" value="<%=user.age%>" name="age" />
+      <br />
+      <label for = "uprole">Role:</label>
+      <input class = "upd-input" id="uprole" type="text" value="<%=user.role%>" name="role" />
+      <br />
+      <label for = uptran>Operation:</label>
+       <input class = "upd-input" id="uptran" type="number" value="<%=user.numOfTransactions%>" name="tran" />
+      <br />
+      <input
+        type="button"
+        value="update user"
+        class="btn-sub"
+        onclick="updateUser('<%=user.id%>')"
+      />
+    </form>
+</div>
+</div>
+
+    <% }; %> <% if(!upd) {%>
+
+      <div class = "box">
+        <div class = "box-child" >
+
+    <form class ="add-user-form"  action="/editusers/userdata/newuser" method="POST">
+     
+      <h1>Add New User</h1>
+      <div class="input-icons">
+      <!--<label for="uname">username:</label>-->
+     
+      <input
+      class = "input-field"
+        id="uname"
+        type="text"
+        name="username"
+        placeholder="enter user username"
+      /><br />
+      <!--<label for="uname">passward:</label>-->
+     
+      <input
+      class = "input-field"
+        id="upass"
+        type="text"
+        name="pass"
+        placeholder="enter passward"
+      /><br />
+     <!-- <label for="uage">age:</label>-->
+      <input
+      class = "input-field"
+        id="uage"
+        type="number"
+        name="age"
+        placeholder="enter user age"
+      /><br />
+     <!-- <label for="urole">role:</label>-->
+      <input
+      class = "input-field"
+        id="urole"
+        type="text"
+        name="role"
+        placeholder="enter user role"
+      /><br />
+      <!--<label for="tran">num of transaction:</label>-->
+      <input
+      class = "input-field"
+        id="tran"
+        type="number"
+        name="tran"
+      placeholder="enter transection amount"
+      /></div>
+      
+      <input type="submit" value="add user" class="btn-sub" />
+    
+    </form>
+</div>
+</div>
+    <% } %>
+
+    <a href = "/editusers" >back to User Management Page</a>
+  </body>
+
+  <script>
+    async function updateUser(userId) {
+      id = parseInt(userId);
+      let usrname = document.getElementById("uname").value;
+      let usrpass = document.getElementById("uppass").value;
+      let userage = document.getElementById("upage").value;
+      let userrole = document.getElementById("uprole").value;
+      let usertran = document.getElementById("uptran").value;
+
+      let obj = {
+        id: id,
+        username: usrname,
+        password:usrpass,
+        age: userage,
+        role:userrole,
+        numOfTransactions:usertran
+      };
+
+      fetch("/editusers", {
+        method: "POST", // or 'PUT'
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(obj),
+      })
+        .then((res) => res.text())
+        .then((htmlStr) => {
+          document.open();
+          document.write(htmlStr);
+          document.close();
+        });
+    }
+  </script>
+</html>

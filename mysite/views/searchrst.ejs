@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Patrick Hand"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  </head>
+  <body>
+    <input 
+    id = "logout-btn"
+    type = "button"
+    value = "Log Out"
+    onclick="getLogOut()"
+    >
+    <h1>Search Result</h1>
+    <div class="row">
+      <div class="column">
+        <% if(answer){ %>
+        <h1>
+          <a href="/menu/search/results/moviedata/<%=movie.id%>"
+            ><%=movie.name.charAt(0).toUpperCase()%><%=movie.name.slice(1)%></a
+          >
+        </h1>
+        <% } else{ %>
+        <h1 style="color: red">This movie does not exists</h1>
+        <% } %>
+      </div>
+      <div class="column">
+        <ul>
+          <%sameGenre.map(el => {%>
+          <li>
+            <a href="/menu/search/results/moviedata/<%=el.id%>">
+              <%=el.name.charAt(0).toUpperCase()%><%=el.name.slice(1)%> <% })%>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <br />
+
+    
+    <a class = "back-link" style="font-weight: bold;" href="/menu/search">back to movie search</a>
+
+  </body>
+  
+  <script>
+
+function getLogOut(){
+fetch("/") .then((res) => res.text())
+        .then((htmlStr) => {
+          document.open();
+          document.write(htmlStr);
+          document.close();
+        });
+
+ }
+  </script>
+</html>

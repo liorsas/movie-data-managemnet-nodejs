@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Patrick Hand"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+
+    <input 
+    id = "logout-btn"
+    type = "button"
+    value = "Log Out"
+    onclick="getLogOut()"
+    >
+
+    <div class = "tran">
+      num of operation: <input class = "tran-btn" type = "button" value =  <%=trans%>>
+    </div>
+    <div class = "menu">
+    <h1>Menu Page</h1>
+    <a class = "menu-link" href="/menu/search">Search for movies</a><br /><br /><br />
+    <a class = "menu-link" href="/menu/crenewmovie">Create new movie</a><br /><br /><br />
+
+    <% if(answer){ %>
+
+    <a class = "menu-link" href="/editusers">Edit Users</a>
+    <% } %>
+  </div>
+  </body>
+
+  <script>
+ 
+ 
+ function getLogOut(){
+fetch("/") .then((res) => res.text())
+        .then((htmlStr) => {
+          document.open();
+          document.write(htmlStr);
+          document.close();
+        });
+
+ }
+ 
+
+ 
+ 
+   
+
+
+  </script>
+</html>

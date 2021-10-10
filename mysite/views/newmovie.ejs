@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Patrick Hand"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <input 
+    id = "logout-btn"
+    type = "button"
+    value = "Log Out"
+    onclick="getLogOut()"
+    >
+
+    <h1>Create New Movie</h1>
+    <form id = "new-movie-form" action="/menu/crenewmovie/savemovie" method="POST">
+      <label for= "name" >Movie Name:</label>
+       <input type="text" id="name" name="name" /> <br />
+       <label for= "lang" >Language:</label>
+      <input type="text" id="lng" name="lang" /> <br />
+      <label for= "gener" >Genres:</label>
+      <input type="text" id="gen" name="gener" /> <br />
+      <input type="submit" value="create" class = "btn-sub" />
+    </form>
+    <br />
+    <a class = "back-link" href="/menu">Back To Menu Page </a>
+  </body>
+  <script>
+    function getLogOut(){
+fetch("/") .then((res) => res.text())
+        .then((htmlStr) => {
+          document.open();
+          document.write(htmlStr);
+          document.close();
+        });
+
+ }
+  </script>
+</html>

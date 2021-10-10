@@ -1,0 +1,219 @@
+body {
+  padding: 50px;
+  
+  font-family: "Patrick Hand";
+  background-color:rgb(197, 194, 194);
+  font-size: 30px;
+}
+
+
+
+a {
+  color: #00B7FF;
+}
+
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.btn-sub {
+  background-color: rgb(56, 55, 55);
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  margin: 4px 2px;
+  cursor: pointer;
+  font-size: 16px;
+  border: none;
+  text-decoration: none;
+  font-weight: bold;
+  
+}
+.btn-upd {
+  
+  
+  color: black;
+  font-weight: bold;
+ 
+  cursor: pointer;
+}
+
+.back-link{
+  color: black;
+  font-weight: bold;
+ 
+  cursor: pointer;
+}
+
+
+.box{
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+.box-child{
+
+  
+  border: 3px solid white;
+  width: 500px;
+  height: 500px;
+  
+
+  
+  
+}
+
+.log-form{
+
+  text-align: center;
+
+}
+
+
+
+.input-icons i {
+  position: absolute;
+}
+
+
+.input-icons {
+  width: 90%;
+  margin-bottom: 10px;
+}
+
+.icon {
+  padding: 10px;
+  min-width: 40px;
+}
+
+.input-field {
+  
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  
+}
+
+.tran{
+  float: right;
+}
+
+.tran-btn{
+  background-color: rgb(56, 55, 55);
+  color: red;
+  font-weight: bold;
+  padding: 15px 32px;
+  text-align: center;
+  margin: 4px 2px;
+  cursor: pointer;
+  font-size: 16px;
+  border: none;
+  text-decoration: none;
+
+}
+
+.menu-link{
+  background-color: rgb(194, 189, 189);
+  box-shadow: 0 5px 0 rgb(34, 33, 33);
+  color:white;
+  padding: 16px 28px;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  margin: auto;
+
+}
+
+.menu-link:hover{
+  background-color: #ce0606;
+  cursor: pointer;
+}
+
+.menu-link:active {
+  box-shadow: none;
+  top: 5px;
+}
+
+.menu >a {
+  color: black;
+}
+
+.column >ul >li >a {
+  color:black
+}
+
+#logout-btn{
+
+
+  float: left;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  padding: 15px 32px;
+  text-align: center;
+  margin: 4px 2px;
+  cursor: pointer;
+  font-size: 16px;
+  border: none;
+  text-decoration: none;
+}
+
+.upd-user-log-form >h1{
+
+  text-align: center;
+ 
+}
+
+.upd-user-log-form >label {
+
+  display: inline-block;
+  width: 150px;
+  text-align: right;
+}
+
+.upd-user-log-form >.btn-sub{
+
+  margin-left: 150px;
+  margin-top: 20px;
+
+}
+
+.upd-user-log-form >#upid {
+
+  font-weight: bold;
+}
+
+
+.upd-input{
+
+  width: 40%;
+  
+  text-align: center;
+  font-size: 16px;
+  margin: auto;
+  box-sizing: border-box;
+  float:inline-end
+}
+
+.add-user-form{
+  text-align: center;
+}
+
+
+
+#new-movie-form >label {
+
+ display: inline-block;
+width: 150px;
+text-align: right;
+}

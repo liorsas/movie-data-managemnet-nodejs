@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Patrick Hand"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <input 
+    id = "logout-btn"
+    type = "button"
+    value = "Log Out"
+    onclick="getLogOut()"
+    >
+
+    <h1>Movie Data</h1>
+
+    <h3>movie name : <%=movieObj.name%></h3>
+    <br />
+    <h3>movie language : <%=movieObj.language%></h3>
+    <br />
+    <h3>movie genres : <%=movieObj.genres%></h3>
+
+    <% if(movieObj.pic){ %>
+<img src="<%=movieObj.pic%>" alt="no picture">
+    <%}%>
+
+    <br />
+
+    <br />
+
+    <a class = "back-link" href="/menu">beck to menu page</a><br /><br />
+    
+  </body>
+
+  <script>
+     function getLogOut(){
+fetch("/") .then((res) => res.text())
+        .then((htmlStr) => {
+          document.open();
+          document.write(htmlStr);
+          document.close();
+        });
+
+ }
+  </script>
+</html>
