@@ -17,4 +17,7 @@
     "morgan": "~1.9.1",
     "nodemon": "^2.0.12"
   }
+"scripts": {
+    "start": "node your-script.js"
+ }
 }
